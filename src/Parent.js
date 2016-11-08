@@ -4,7 +4,6 @@ import Child from './Child';
 import Form from './Form';
 import List from './List';
 
-
 //parent component
 class Parent extends Component {
   constructor() {
@@ -18,8 +17,8 @@ class Parent extends Component {
     //bind methods in constructor
     this.consoleLogChild = this.consoleLogChild.bind(this)
     this.titleChange = this.titleChange.bind(this)
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     this.displayGreeting = this.displayGreeting.bind(this)
   }
 
@@ -43,11 +42,11 @@ class Parent extends Component {
     this.setState({button: "Changed Button text"});
   }
 
-  handleChange() {
+  handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     alert('Select value is: ' + this.state.value);
   }
 

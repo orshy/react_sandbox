@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
 
 class List extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'Week5'};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Select value is: ' + this.state.value);
-  }
 
   render() {
     return (
       <div>
         <h1>{this.props.listTitle}</h1>
-        <select value={this.state.value} onChange={this.handleChange}>
+        <select value={this.props.value} onChange={this.handleChange}>
           <option value="Week1">Week 1</option>
           <option value="Week2">Week 2</option>
           <option value="Week3">Week 3</option>
