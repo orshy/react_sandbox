@@ -14,26 +14,25 @@ export default class NewResource extends Component{
         url: 'www.google.com'
       },
       {
-        name: 'Google',
-        url: 'www.google.com'
+        name: 'Yahoo',
+        url: 'www.yahoo.com'
       },
       {
-        name: 'Google',
-        url: 'www.google.com'
+        name: 'reddit',
+        url: 'www.reddit.com'
       },
       {
-        name: 'Google',
-        url: 'www.google.com'
+        name: 'npr',
+        url: 'www.npr.com'
       },
       {
-        name: 'Google',
-        url: 'www.google.com'
+        name: 'BBC',
+        url: 'www.BBC.co.uk'
       }
       ],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleUrlChange = this.handleUrlChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleInputChange(e) {
@@ -57,7 +56,7 @@ export default class NewResource extends Component{
       <div className="App">
         <NewResourceInfo
           list={this.state.list}
-          onChange={this.handleInputChange}
+          handleInputChange={this.handleInputChange}
 
           value={this.state.inputValue}
           handleSubmit={this.handleSubmit}
@@ -74,17 +73,18 @@ class NewResourceInfo extends Component {
   render() {
 
     const ulStyle = {
-      listStyleType: 'none'
-    }
+      listStyleType: 'none',
+      lineHeight: '2'
+    };
 
     const listOfNames = this.props.list.map((individual, idx) => {
-      return <li key={idx}>{`Name: ${individual.name}, Url: ${individual.url}`}></li>
+      return <li key={idx}>Name: {individual.name},<br /> Url: <a href={individual.url}>{individual.url}</a></li>
     });
 
     return(
       <div className="App">
         <h1>Another Input</h1>
-        <input onChange={this.props.onChange} value={this.props.inputValue}></input>
+        <input onChange={this.props.handleInputChange} value={this.props.inputValue}></input>
         <br />
         <input onChange={this.props.handleUrlChange} value={this.props.urlValue}></input>
         <br />
