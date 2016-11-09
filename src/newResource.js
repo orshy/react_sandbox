@@ -6,52 +6,53 @@ export default class NewResource extends Component{
     super();
     this.state = {
       inputValue: '',
-      ageValue: '',
+      urlValue: '',
       buttonValue: 'submit',
       list: [
       {
-        name: 'phil',
-        age: 21
+        name: 'Google',
+        url: 'www.google.com'
       },
       {
-        name: 'derek',
-        age: 51
+        name: 'Google',
+        url: 'www.google.com'
       },
       {
-        name: 'ted',
-        age: 71
+        name: 'Google',
+        url: 'www.google.com'
       },
       {
-        name: 'todd',
-        age: 91
+        name: 'Google',
+        url: 'www.google.com'
       },
       {
-        name: 'bob',
-        age: 11
+        name: 'Google',
+        url: 'www.google.com'
       }
       ],
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleAgeChange = this.handleAgeChange.bind(this);
+    this.handleUrlChange = this.handleUrlChange.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleInputChange(e) {
     this.setState({inputValue: e.target.value});
   }
-  handleAgeChange(e) {
-    this.setState({ageValue: e.target.value});
+  handleUrlChange(e) {
+    this.setState({urlValue: e.target.value});
   }
   handleSubmit(e) {
     const newPerson = {
       name: this.state.inputValue,
-      age: this.state.ageValue,
+      url: this.state.urlValue,
     }
     const newArray = [newPerson].concat(this.state.list)
     this.setState({list: newArray })
   }
 
   render() {
+
     return(
       <div className="App">
         <NewResourceInfo
@@ -61,8 +62,8 @@ export default class NewResource extends Component{
           value={this.state.inputValue}
           handleSubmit={this.handleSubmit}
 
-          age={this.state.ageValue}
-          handleAgeChange={this.handleAgeChange}
+          url={this.state.urlValue}
+          handleUrlChange={this.handleUrlChange}
         />
       </div>
     );
@@ -71,17 +72,24 @@ export default class NewResource extends Component{
 
 class NewResourceInfo extends Component {
   render() {
-    const listOfName = this.props.list.map((individual, idx) => {
-      return <li key={idx}>{`Name: ${individual.name}, Age: ${individual.age}`}</li>
+
+    const ulStyle = {
+      listStyleType: 'none'
+    }
+
+    const listOfNames = this.props.list.map((individual, idx) => {
+      return <li key={idx}>{`Name: ${individual.name}, Url: ${individual.url}`}></li>
     });
 
     return(
       <div className="App">
         <h1>Another Input</h1>
         <input onChange={this.props.onChange} value={this.props.inputValue}></input>
-        <input onChange={this.props.handleAgeChange} value={this.props.ageValue}></input>
+        <br />
+        <input onChange={this.props.handleUrlChange} value={this.props.urlValue}></input>
+        <br />
         <button onClick={this.props.handleSubmit}>submit</button>
-        <ul>{listOfName}</ul>
+        <ul style={ulStyle}>{listOfNames}</ul>
       </div>
     );
   }
